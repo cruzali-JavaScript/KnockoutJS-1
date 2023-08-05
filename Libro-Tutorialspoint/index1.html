@@ -1,0 +1,49 @@
+K,
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knockout js 1 - Simple example</title>
+
+</head>
+
+<body>
+    <!-- This is called VIEW -->
+
+    <h1>Encabezado <span data-bind="text: title"></span> </h1>
+    <p>First String: <input data-bind="value: firstString" /></p>
+    <!-- <p>Second String <input data-bind="value: secondString" /></p> -->
+
+    <p>First String <strong data-bind="value: firstString">Hi</strong></p>
+    <!-- <p>Second String <strong data-bind="value: secondString">There</strong></p>
+    <p>Derived String <strong data-bind="value: thirdString"></strong></p> -->
+
+    <script src="../knockout-3.4.0.js"></script>
+
+    <script>
+        // <!-- This is called ViewModel -->
+
+        var viewModel1 = function () {
+            this.title = 'Titulo 1';
+        };
+
+        function AppViewModel() {
+            this.firstString = ko.observable("Enter first string");
+            this.secondString = ko.observable("Enter second string");
+
+            this.thirdString = ko.computed(function () {
+                return this.firstString() + " " + this.secondString();
+            }, this);
+        }
+
+        // Activates knockout.js
+        ko.applyBindings(viewModel1);
+        ko.applyBindings(new AppViewModel());
+
+    </script>
+
+</body>
+
+</html>

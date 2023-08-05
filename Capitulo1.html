@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knockout JS - Libro Knockout.js Building Dynamic Client-Side Web Applications</title>
+</head>
+
+<body>
+    <h1>Hello <span data-bind="text: name"></span></h1>
+    <h2>Message: <span data-bind="text: message"></span> </h2>
+    <p>Edad: <span data-bind="text: edad"></span> </p>
+
+    <script type='text/javascript' src="knockout-3.4.0.js"></script>
+
+    <script>
+
+        var viewModel = function () {
+            this.name = 'Ali C';
+            this.message = 'Hello World';
+        };
+
+        var viewModel2 = function () {
+            this.edad = '35';
+        };
+
+        var myFirstVieModel = {
+            name: 'Ali'
+        };
+
+        var mySecondVieModel = function () {
+            var self = this;
+
+            self.name = 'Ali CM';
+            self.getName = function () {
+                return self.name;
+            };
+        };
+
+        function ViewModel(name) {
+            var self = this;
+
+            self.name = name;
+            self.getName = function () {
+                return self.name;
+            };
+        };
+
+        var myThirdViewModel = new ViewModel('Sara');
+
+        alert(myFirstVieModel.name);
+        alert(viewModel.message);
+        alert(mySecondVieModel.name);
+        alert(mySecondVieModel.getName);
+
+
+
+        ko.applyBindings(viewModel);
+        ko.applyBindings(viewModel2);
+        ko.applyBindings(mySecondVieModel);
+
+    </script>
+</body>
+
+</html>
